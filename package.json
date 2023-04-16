@@ -23,6 +23,7 @@
     "node": ">= 18"
   },
   "scripts": {
+    "start": "ts-node-esm src/index.ts",
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix --max-warnings=0 .",
     "type-check": "tsc --noEmit",
@@ -52,5 +53,8 @@
       "prettier --write",
       "eslint --fix --max-warnings=0"
     ]
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4"
   }
 }
