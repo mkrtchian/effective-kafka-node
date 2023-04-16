@@ -27,7 +27,7 @@
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix --max-warnings=0 .",
     "type-check": "tsc --noEmit",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test-all": "yarn lint && yarn type-check && yarn test",
     "prepare": "husky install"
   },
