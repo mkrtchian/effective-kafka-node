@@ -15,10 +15,18 @@ cd docker-compose/single-broker
 docker-compose up -d
 ```
 
+Kafdrop will be available at `http://localhost:9000`.
+
 Then, you can run the examples:
 
-### 1 - Produce a message:
+### 1 - Produce messages:
 
 ```bash
-yarn start
+yarn start:publish
+```
+
+### 2 - Consume messages:
+
+```bash
+yarn start:consume
 ```

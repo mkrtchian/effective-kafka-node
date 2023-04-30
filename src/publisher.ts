@@ -1,10 +1,5 @@
-import { Kafka } from "kafkajs";
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-const kafka = new Kafka({
-  brokers: ["localhost:9092"],
-});
+import { kafka } from "./kafka.js";
+import { delay } from "./utils.js";
 
 const producer = kafka.producer({ idempotent: true });
 

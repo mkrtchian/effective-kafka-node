@@ -23,7 +23,8 @@
     "node": ">= 18"
   },
   "scripts": {
-    "start": "ts-node-esm src/index.ts",
+    "start:publisher": "ts-node-esm src/publisher.ts",
+    "start:consumer": "ts-node-esm src/consumer.ts",
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix --max-warnings=0 .",
     "type-check": "tsc --noEmit",
