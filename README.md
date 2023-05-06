@@ -19,14 +19,22 @@ Kafdrop will be available at `http://localhost:9000`.
 
 Then, you can run the examples:
 
-### 1 - Produce messages:
+### 1 - Produce and consume messages:
 
 ```bash
-yarn start:publish
+yarn start:publisher-simple
 ```
 
-### 2 - Consume messages:
+```bash
+yarn start:consumer-simple
+```
+
+### 2 - Produce and consume serialized messages:
 
 ```bash
-yarn start:consume
+yarn start:publisher-serialized
+```
+
+```bash
+yarn start:consumer-serialized
 ```

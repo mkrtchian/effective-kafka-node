@@ -1,9 +1,10 @@
 import { kafka } from "./kafka.js";
+import { GROUP_ID, TOPIC_NAME } from "./constants.js";
 
-const consumer = kafka.consumer({ groupId: "test-group" });
+const consumer = kafka.consumer({ groupId: GROUP_ID });
 
 await consumer.connect();
-await consumer.subscribe({ topic: "test-topic", fromBeginning: true });
+await consumer.subscribe({ topic: TOPIC_NAME, fromBeginning: true });
 
 await consumer.run({
   autoCommit: false,

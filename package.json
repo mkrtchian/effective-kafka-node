@@ -20,11 +20,13 @@
   },
   "type": "module",
   "engines": {
-    "node": ">= 18"
+    "node": ">= 19"
   },
   "scripts": {
-    "start:publisher": "ts-node-esm src/publisher.ts",
-    "start:consumer": "ts-node-esm src/consumer.ts",
+    "start:publisher-simple": "ts-node-esm src/simpleFlow/publisher.ts",
+    "start:consumer-simple": "ts-node-esm src/simpleFlow/consumer.ts",
+    "start:publisher-serialized": "ts-node-esm src/serializedFlow/publisher.ts",
+    "start:consumer-serialized": "ts-node-esm src/serializedFlow/consumer.ts",
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix --max-warnings=0 .",
     "type-check": "tsc --noEmit",
@@ -56,6 +58,7 @@
     ]
   },
   "dependencies": {
-    "kafkajs": "^2.2.4"
+    "kafkajs": "^2.2.4",
+    "zod": "^3.21.4"
   }
 }
