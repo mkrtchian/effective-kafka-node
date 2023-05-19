@@ -21,6 +21,10 @@ Then, you can run the examples:
 
 ### 1 - Produce and consume messages:
 
+A very simple exemple of producer and consumer.
+
+The code is in `src/simpleFlow`.
+
 ```bash
 yarn start:publisher-simple
 ```
@@ -30,6 +34,10 @@ yarn start:consumer-simple
 ```
 
 ### 2 - Produce and consume serialized messages:
+
+This example serializes the messages in JSON format, parsed with Zod. It is organized in hexagonal architecture.
+
+The code is in `src/serializedFlow`.
 
 ```bash
 yarn start:publisher-serialized
