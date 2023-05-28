@@ -51,8 +51,22 @@ yarn start:serialized:consumer
 
 This example uses a Kafka transaction to ensure the publication of a message is done _exactly-once_.
 
+The code is in `src/transactionalFlow`.
+
 The first stage consumes messages from the input topic, computes the square of a value, and publishes them to the output topic.
 
 With idempotence activated on the publisher, and retries activated on the consumer and on the publisher, the only way the messages could be published twice is if the client process crashes. And specifically crashes after the a message is published and before having commited the offset as a consumer.
 
-The example is not ready yet.
+#### 1. Create events for stage 1
+
+This use case just creates 10 events in stage 1 topic, to trigger the next job that will use the transaction.
+
+```bash
+yarn start:transactional:publish-to-stage1
+```
+
+#### 2. Consume from stage 1 topic, publish transactionnally to stage 2 topic
+
+This use case consumes from stage 1 topic, computes the square of the value, and publishes to stage 2 topic.
+
+**The transaction has not been added yet**

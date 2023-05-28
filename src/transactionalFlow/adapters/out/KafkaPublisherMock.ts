@@ -25,12 +25,13 @@ export class KafkaPublisherMock implements StreamingPublisherPort {
     expectedMessages: { topicName: string; data: Stage2Event }[]
   ) {
     for (let i = 0; i < expectedMessages.length; i++) {
-      expect(this._messages[i].topicName).toBe(expectedMessages[i].topicName);
-      expect(this._messages[i].data.id).toBe(expectedMessages[i].data.id);
-      expect(this._messages[i].data.squaredValue).toBeCloseTo(
-        expectedMessages[i].data.squaredValue,
-        5
-      );
+      expect(this._messages[i]).toEqual(expectedMessages[i]);
     }
+    return this;
+  }
+
+  shouldHavePublishedNumberOfMessages(numberOfMessages: number) {
+    expect(this._messages.length).toBe(numberOfMessages);
+    return this;
   }
 }

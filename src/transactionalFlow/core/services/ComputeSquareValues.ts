@@ -47,9 +47,11 @@ export class ComputeSquareValues implements ComputeSquareValuesPort {
   }
 
   private _computeStage2Event(stage1Event: Stage1Event) {
+    const squaredValue = stage1Event.value ** 2;
+    const twoDecimalSquaredValue = Math.round(squaredValue * 100) / 100;
     const stage2Event: Stage2Event = {
       id: stage1Event.id,
-      squaredValue: stage1Event.value ** 2,
+      squaredValue: twoDecimalSquaredValue,
     };
     return stage2Event;
   }
@@ -64,5 +66,6 @@ export class ComputeSquareValues implements ComputeSquareValuesPort {
 
   private async _cleanupStreamingAdapters() {
     await this._streamingPublisher.disconnect();
+    await this._streamingConsumer.disconnect();
   }
 }

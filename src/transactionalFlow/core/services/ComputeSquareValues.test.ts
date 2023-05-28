@@ -4,7 +4,7 @@ import { Stage1Message } from "../ports/out/StreamingConsumerPort.js";
 import { ComputeSquareValues } from "./ComputeSquareValues.js";
 
 describe("Compute square values", () => {
-  it("consumes events from stage1 topic, and for each event publishes an event in stage1 topic, with the value being the square of the consumed one", async () => {
+  it("consumes events from stage 1 topic, and for each event publishes an event in stage 2 topic, with the value being the square of the consumed one", async () => {
     // Given
     const kafkaConsumerMock = new KafkaConsumerMock();
     const kafkaPublisherMock = new KafkaPublisherMock();
