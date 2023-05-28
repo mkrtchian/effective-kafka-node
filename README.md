@@ -19,30 +19,40 @@ Kafdrop will be available at `http://localhost:9000`.
 
 Then, you can run the examples:
 
-### 1 - Produce and consume messages:
+### 1 - Produce and consume messages
 
 A very simple exemple of producer and consumer.
 
 The code is in `src/simpleFlow`.
 
 ```bash
-yarn start:publisher-simple
+yarn start:simple:publisher
 ```
 
 ```bash
-yarn start:consumer-simple
+yarn start:simple:consumer
 ```
 
-### 2 - Produce and consume serialized messages:
+### 2 - Serialized and deserialize
 
-This example serializes the messages in JSON format, parsed with Zod. It is organized in hexagonal architecture.
+This example serializes the messages in JSON format, parsed with Zod. It is organized in hexagonal architecture, with the core part being unit tested.
 
 The code is in `src/serializedFlow`.
 
 ```bash
-yarn start:publisher-serialized
+yarn start:serialized:publisher
 ```
 
 ```bash
-yarn start:consumer-serialized
+yarn start:serialized:consumer
 ```
+
+### 3 - Use transactions
+
+This example uses a Kafka transaction to ensure the publication of a message is done _exactly-once_.
+
+The first stage consumes messages from the input topic, computes the square of a value, and publishes them to the output topic.
+
+With idempotence activated on the publisher, and retries activated on the consumer and on the publisher, the only way the messages could be published twice is if the client process crashes. And specifically crashes after the a message is published and before having commited the offset as a consumer.
+
+The example is not ready yet.

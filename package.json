@@ -23,11 +23,11 @@
     "node": ">= 19"
   },
   "scripts": {
-    "start:publisher-simple": "ts-node-esm src/simpleFlow/publisher.ts",
-    "start:consumer-simple": "ts-node-esm src/simpleFlow/consumer.ts",
-    "start:publisher-serialized": "ts-node-esm src/serializedFlow/adapters/in/CustomerPublisherCLI.ts",
-    "start:consumer-serialized": "ts-node-esm src/serializedFlow/adapters/in/CustomerConsumerCLI.ts",
-    "start:consumer-transactional": "ts-node-esm src/transactionalFlow/adapters/in/ComputeSquareValuesCLI.ts",
+    "start:simple:publisher": "ts-node-esm src/simpleFlow/publisher.ts",
+    "start:simple:consumer": "ts-node-esm src/simpleFlow/consumer.ts",
+    "start:serialized:publisher": "ts-node-esm src/serializedFlow/adapters/in/CustomerPublisherCLI.ts",
+    "start:serialized:consumer": "ts-node-esm src/serializedFlow/adapters/in/CustomerConsumerCLI.ts",
+    "start:transactional:consumer": "ts-node-esm src/transactionalFlow/adapters/in/ComputeSquareValuesCLI.ts",
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix --max-warnings=0 .",
     "type-check": "tsc --noEmit",
