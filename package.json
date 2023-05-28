@@ -27,7 +27,7 @@
     "start:consumer-simple": "ts-node-esm src/simpleFlow/consumer.ts",
     "start:publisher-serialized": "ts-node-esm src/serializedFlow/adapters/in/CustomerPublisherCLI.ts",
     "start:consumer-serialized": "ts-node-esm src/serializedFlow/adapters/in/CustomerConsumerCLI.ts",
-    "start:consumer-transactional": "ts-node-esm src/transactionalFlow/adapters/in/Stage1ConsumerCLI.ts",
+    "start:consumer-transactional": "ts-node-esm src/transactionalFlow/adapters/in/ComputeSquareValuesCLI.ts",
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix --max-warnings=0 .",
     "type-check": "tsc --noEmit",

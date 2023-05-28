@@ -1,5 +1,5 @@
 import { stage1TopicName, stage2TopicName } from "../../constants.js";
-import { Stage1ConsumerPort } from "../ports/in/Stage1Port.js";
+import { ComputeSquareValuesPort } from "../ports/in/ComputeSquareValuesPort.js";
 import {
   Stage1Message,
   StreamingConsumerPort,
@@ -8,7 +8,7 @@ import { LoggerPort } from "../ports/out/LoggerPort.js";
 import { StreamingPublisherPort } from "../ports/out/StreamingPublisherPort.js";
 import { Stage1Event, Stage2Event, stage1EventSchema } from "./events.js";
 
-export class Stage1Consumer implements Stage1ConsumerPort {
+export class ComputeSquareValues implements ComputeSquareValuesPort {
   constructor(
     private readonly _streamingConsumer: StreamingConsumerPort,
     private readonly _streamingPublisher: StreamingPublisherPort,

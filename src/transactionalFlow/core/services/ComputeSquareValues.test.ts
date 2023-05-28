@@ -1,10 +1,10 @@
 import { KafkaConsumerMock } from "../../adapters/out/KafkaConsumerMock.js";
 import { KafkaPublisherMock } from "../../adapters/out/KafkaPublisherMock.js";
 import { Stage1Message } from "../ports/out/StreamingConsumerPort.js";
-import { Stage1Consumer } from "./Stage1Consumer.js";
+import { ComputeSquareValues } from "./ComputeSquareValues.js";
 
-describe("Stage 1 consumer use case", () => {
-  it("consumes events and publishes the same events with their value being squared, to another topic", async () => {
+describe("Compute square values", () => {
+  it("consumes events from stage1 topic, and for each event publishes an event in stage1 topic, with the value being the square of the consumed one", async () => {
     // Given
     const kafkaConsumerMock = new KafkaConsumerMock();
     const kafkaPublisherMock = new KafkaPublisherMock();
@@ -42,7 +42,7 @@ describe("Stage 1 consumer use case", () => {
     ];
     kafkaConsumerMock.setMessages(initialMessages);
     const loggerMock = { log: jest.fn() };
-    const sut = new Stage1Consumer(
+    const sut = new ComputeSquareValues(
       kafkaConsumerMock,
       kafkaPublisherMock,
       loggerMock
