@@ -1,10 +1,10 @@
 import { StreamingPublisherPort } from "../../core/ports/out/StreamingPublisherPort.js";
 import { Stage2Event } from "../../core/services/events.js";
-import { Producer as KafkaProducer, Kafka } from "kafkajs";
+import { Producer, Kafka } from "kafkajs";
 
 export class KafkaPublisher implements StreamingPublisherPort {
   private _connected: boolean;
-  private _producer: KafkaProducer;
+  private _producer: Producer;
 
   constructor() {
     this._connected = false;

@@ -1,6 +1,7 @@
 import { CreateInitialValuesPort } from "../../core/ports/in/CreateInitialValuesPort.js";
 import { CreateInitialValues } from "../../core/services/CreateInitialValues.js";
 import { KafkaPublisher } from "../out/KafkaPublisher.js";
+import { Logger } from "../out/Logger.js";
 
 export class CreateInitialValuesCLI {
   constructor(private readonly _service: CreateInitialValuesPort) {}
@@ -10,7 +11,7 @@ export class CreateInitialValuesCLI {
   }
 }
 
-const stage1ConsumerCLI = new CreateInitialValuesCLI(
-  new CreateInitialValues(new KafkaPublisher())
+const createInitialValuesCLI = new CreateInitialValuesCLI(
+  new CreateInitialValues(new KafkaPublisher(), new Logger())
 );
-await stage1ConsumerCLI.handle();
+await createInitialValuesCLI.handle();

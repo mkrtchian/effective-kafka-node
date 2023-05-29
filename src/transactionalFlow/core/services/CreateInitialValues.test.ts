@@ -5,7 +5,8 @@ describe("Create initial values", () => {
   it("publishes 10 initial events in the stage 1 topic", async () => {
     // Given
     const kafkaPublisherMock = new KafkaPublisherMock();
-    const sut = new CreateInitialValues(kafkaPublisherMock);
+    const loggerMock = { log: jest.fn() };
+    const sut = new CreateInitialValues(kafkaPublisherMock, loggerMock);
 
     // When
     await sut.handle();

@@ -1,6 +1,6 @@
 import { Stage1Event, Stage2Event } from "../../services/events.js";
 
-type Metadata = {
+export type Metadata = {
   baseOffset?: string;
 }[];
 

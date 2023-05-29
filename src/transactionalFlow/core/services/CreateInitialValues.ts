@@ -1,10 +1,14 @@
+import { Logger } from "../../adapters/out/Logger.js";
 import { stage1TopicName } from "../../constants.js";
 import { CreateInitialValuesPort } from "../ports/in/CreateInitialValuesPort.js";
 import { StreamingPublisherPort } from "../ports/out/StreamingPublisherPort.js";
 import { Stage1Event } from "./events.js";
 
 export class CreateInitialValues implements CreateInitialValuesPort {
-  constructor(private readonly _streamingPublisher: StreamingPublisherPort) {}
+  constructor(
+    private readonly _streamingPublisher: StreamingPublisherPort,
+    private readonly _logger: Logger
+  ) {}
 
   async handle() {
     const events: Stage1Event[] = [
@@ -21,6 +25,7 @@ export class CreateInitialValues implements CreateInitialValuesPort {
     ];
     for (const event of events) {
       await this._streamingPublisher.publish(stage1TopicName, event);
+      this._logger.log("Published stage 1 event:", event);
     }
     await this._streamingPublisher.disconnect();
   }

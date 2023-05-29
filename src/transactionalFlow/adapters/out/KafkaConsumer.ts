@@ -13,7 +13,7 @@ export class KafkaConsumer implements StreamingConsumerPort {
     const kafka = new Kafka({
       brokers: ["localhost:9092"],
     });
-    this._consumer = kafka.consumer({ groupId: "serializedFlow" });
+    this._consumer = kafka.consumer({ groupId: "transactionalFlow" });
   }
 
   async runConsumer(callback: (message: Stage1Message) => void) {

@@ -69,4 +69,8 @@ yarn start:transactional:publish-to-stage1
 
 This use case consumes from stage 1 topic, computes the square of the value, and publishes to stage 2 topic.
 
-**The transaction has not been added yet**
+```bash
+yarn start:transactional:publish-to-stage2
+```
+
+Next step: making it work with multiple partitions, by creating one producer per partition.

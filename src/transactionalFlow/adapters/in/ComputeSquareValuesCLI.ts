@@ -1,8 +1,7 @@
 import { ComputeSquareValuesPort } from "../../core/ports/in/ComputeSquareValuesPort.js";
 import { ComputeSquareValues } from "../../core/services/ComputeSquareValues.js";
-import { KafkaConsumer } from "../out/KafkaConsumer.js";
-import { KafkaPublisher } from "../out/KafkaPublisher.js";
 import { Logger } from "../out/Logger.js";
+import { TransactionalKafka } from "../out/TransactionalKafka.js";
 
 export class ComputeSquareValuesCLI {
   constructor(private readonly _service: ComputeSquareValuesPort) {}
@@ -12,11 +11,7 @@ export class ComputeSquareValuesCLI {
   }
 }
 
-const stage1ConsumerCLI = new ComputeSquareValuesCLI(
-  new ComputeSquareValues(
-    new KafkaConsumer(),
-    new KafkaPublisher(),
-    new Logger()
-  )
+const computeSquareValuesCLI = new ComputeSquareValuesCLI(
+  new ComputeSquareValues(new TransactionalKafka(), new Logger())
 );
-await stage1ConsumerCLI.handle();
+await computeSquareValuesCLI.handle();

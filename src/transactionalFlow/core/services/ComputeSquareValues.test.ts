@@ -1,13 +1,11 @@
-import { KafkaConsumerMock } from "../../adapters/out/KafkaConsumerMock.js";
-import { KafkaPublisherMock } from "../../adapters/out/KafkaPublisherMock.js";
+import { TransactionalKafkaMock } from "../../adapters/out/TransactionalKafkaMock.js";
 import { Stage1Message } from "../ports/out/StreamingConsumerPort.js";
 import { ComputeSquareValues } from "./ComputeSquareValues.js";
 
 describe("Compute square values", () => {
   it("consumes events from stage 1 topic, and for each event publishes an event in stage 2 topic, with the value being the square of the consumed one", async () => {
     // Given
-    const kafkaConsumerMock = new KafkaConsumerMock();
-    const kafkaPublisherMock = new KafkaPublisherMock();
+    const transactionalKafkaMock = new TransactionalKafkaMock();
     const initialMessages: Stage1Message[] = [
       {
         offset: "0",
@@ -40,19 +38,15 @@ describe("Compute square values", () => {
         headers: {},
       },
     ];
-    kafkaConsumerMock.setMessages(initialMessages);
+    transactionalKafkaMock.setMessages(initialMessages);
     const loggerMock = { log: jest.fn() };
-    const sut = new ComputeSquareValues(
-      kafkaConsumerMock,
-      kafkaPublisherMock,
-      loggerMock
-    );
+    const sut = new ComputeSquareValues(transactionalKafkaMock, loggerMock);
 
     // When
     await sut.handle();
 
     // Then
-    kafkaPublisherMock.shouldHavePublished([
+    transactionalKafkaMock.shouldHavePublished([
       {
         topicName: "transactionalFlowStage2",
         data: {

@@ -1,31 +1,29 @@
 import { stage1TopicName, stage2TopicName } from "../../constants.js";
 import { ComputeSquareValuesPort } from "../ports/in/ComputeSquareValuesPort.js";
+import { LoggerPort } from "../ports/out/LoggerPort.js";
+import { Stage1Event, Stage2Event, stage1EventSchema } from "./events.js";
 import {
   Stage1Message,
-  StreamingConsumerPort,
-} from "../ports/out/StreamingConsumerPort.js";
-import { LoggerPort } from "../ports/out/LoggerPort.js";
-import { StreamingPublisherPort } from "../ports/out/StreamingPublisherPort.js";
-import { Stage1Event, Stage2Event, stage1EventSchema } from "./events.js";
+  TransactionalStreamingPort,
+} from "../ports/out/TransactionalStreamingPort.js";
 
 export class ComputeSquareValues implements ComputeSquareValuesPort {
   constructor(
-    private readonly _streamingConsumer: StreamingConsumerPort,
-    private readonly _streamingPublisher: StreamingPublisherPort,
+    private readonly _transactionalStreaming: TransactionalStreamingPort,
     private readonly _logger: LoggerPort
   ) {}
 
   async handle() {
-    await this._initStreamingAdapters();
-    await this._streamingConsumer.runConsumer(async (message: Stage1Message) =>
-      this._handleMessage.bind(this)(message)
+    await this._initStreamingAdapter();
+    await this._transactionalStreaming.runConsumer(
+      async (message: Stage1Message) => this._handleMessage.bind(this)(message)
     );
-    await this._cleanupStreamingAdapters();
+    await this._cleanupStreamingAdapter();
   }
 
-  private async _initStreamingAdapters() {
-    await this._streamingConsumer.connect();
-    await this._streamingConsumer.subscribe(stage1TopicName, {
+  private async _initStreamingAdapter() {
+    await this._transactionalStreaming.connect();
+    await this._transactionalStreaming.subscribe(stage1TopicName, {
       fromBeginning: true,
     });
   }
@@ -57,15 +55,14 @@ export class ComputeSquareValues implements ComputeSquareValuesPort {
   }
 
   private async _publishToStage2(stage2Event: Stage2Event) {
-    const metadata = await this._streamingPublisher.publish(
+    const metadata = await this._transactionalStreaming.publish(
       stage2TopicName,
       stage2Event
     );
     return metadata;
   }
 
-  private async _cleanupStreamingAdapters() {
-    await this._streamingPublisher.disconnect();
-    await this._streamingConsumer.disconnect();
+  private async _cleanupStreamingAdapter() {
+    await this._transactionalStreaming.disconnect();
   }
 }
