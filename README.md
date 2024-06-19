@@ -1,6 +1,6 @@
 # Effective Kafka Node
 
-![Tests](https://github.com/mkrtchian/humble-object-pattern/workflows/Tests/badge.svg?branch=main)
+![Tests](https://github.com/mkrtchian/effective-kafka-node/workflows/Tests/badge.svg?branch=main)
 
 This project implements examples from Effective Kafka book, but using **Node.js**.
 

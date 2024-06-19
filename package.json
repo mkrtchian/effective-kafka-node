@@ -1,22 +1,19 @@
 {
-  "name": "humble-object-pattern",
+  "name": "effective-kafka-node",
   "version": "1.0.0",
-  "description": "Examples of implementing the humble object pattern with tests",
-  "homepage": "https://github.com/mkrtchian/humble-object-pattern#readme",
+  "description": "Examples of how to use Kafka with Node.js",
+  "homepage": "https://github.com/mkrtchian/effective-kafka-node#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mkrtchian/humble-object-pattern.git"
+    "url": "git+https://github.com/mkrtchian/effective-kafka-node.git"
   },
   "keywords": [
-    "humble-object-pattern",
-    "unit-testing",
-    "hexagonal-architecture",
-    "functional-architecture"
+    "kafka"
   ],
   "author": "Roman Mkrtchian",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mkrtchian/humble-object-pattern/issues"
+    "url": "https://github.com/mkrtchian/effective-kafka-node/issues"
   },
   "type": "module",
   "engines": {
